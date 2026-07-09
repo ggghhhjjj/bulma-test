@@ -43,7 +43,9 @@ Production output is written to `dist/bulma-test/browser/` with `baseHref` set t
 
 Deployment runs automatically via [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml) on every push to `main`.
 
-**One-time setup:** In the repository settings, go to **Pages → Build and deployment → Source** and select **GitHub Actions** (not "Deploy from a branch").
+The workflow uses `enablement: true` on `actions/configure-pages` so GitHub Pages is enabled automatically on the first deploy (build source: GitHub Actions).
+
+**If the deploy job still fails with "Get Pages site failed / Not Found":** enable Pages manually once under **Settings → Pages → Build and deployment → Source → GitHub Actions**, then re-run the workflow.
 
 ## Project structure
 
