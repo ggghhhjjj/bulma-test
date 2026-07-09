@@ -1,0 +1,37 @@
+<div class="div-table-wrapper has-mobile-cards">
+  <div
+    class="div-table"
+    role="table"
+    [style.--column-count]="columns().length"
+  >
+    <div class="div-table-head" role="rowgroup">
+      <div class="div-table-row div-table-head-row" role="row">
+        @for (col of columns(); track col.key) {
+          <div class="div-table-cell" role="columnheader">{{ col.label }}</div>
+        }
+      </div>
+    </div>
+
+    <div class="div-table-body" role="rowgroup">
+      @for (row of rows(); track row.id) {
+        <div class="div-table-row" role="row">
+          @for (col of columns(); track col.key) {
+            <div class="div-table-cell" role="cell" [attr.data-label]="col.label">
+              @switch (col.key) {
+                @case ('status') {
+                  <span [class]="statusTagClass(row.status)">{{ row.status }}</span>
+                }
+                @case ('priority') {
+                  <span [class]="priorityTagClass(row.priority)">{{ row.priority }}</span>
+                }
+                @default {
+                  {{ getCellValue(row, col.key) }}
+                }
+              }
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</div>

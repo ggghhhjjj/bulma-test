@@ -1,0 +1,26 @@
+<nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <span class="navbar-item">
+      <strong>Bulma Responsive Table Demo</strong>
+    </span>
+  </div>
+</nav>
+
+<section class="section">
+  <div class="container">
+    <h1 class="title">Angular + Bulma Responsive Data Grid</h1>
+    <p class="subtitle">
+      A single <code>div</code>-based template adapts to viewport width using CSS media queries only.
+    </p>
+
+    <div class="content">
+      <ul>
+        <li><strong>Desktop (769px+):</strong> CSS Grid row/column layout with Bulma table styling tokens</li>
+        <li><strong>Mobile (768px and below):</strong> each row becomes a card; vertical scroll only</li>
+        <li><strong>No JavaScript</strong> breakpoint detection — resize the browser to see the change</li>
+      </ul>
+    </div>
+
+    <app-responsive-table [columns]="columns" [rows]="tasks" />
+  </div>
+</section>
