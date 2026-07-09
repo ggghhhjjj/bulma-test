@@ -41,11 +41,17 @@ Production output is written to `dist/bulma-test/browser/` with `baseHref` set t
 
 ## GitHub Pages deployment
 
-Deployment runs automatically via [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml) on every push to `main`.
+Deployment runs automatically via [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml) on every push to `main`. The workflow builds the app and pushes the output to the `gh-pages` branch using `peaceiris/actions-gh-pages`.
 
-The workflow uses `enablement: true` on `actions/configure-pages` so GitHub Pages is enabled automatically on the first deploy (build source: GitHub Actions).
+**One-time setup (required):**
 
-**If the deploy job still fails with "Get Pages site failed / Not Found":** enable Pages manually once under **Settings → Pages → Build and deployment → Source → GitHub Actions**, then re-run the workflow.
+1. Wait for the first workflow run to complete — it creates the `gh-pages` branch.
+2. Go to **Settings → Pages → Build and deployment**.
+3. Set **Source** to **Deploy from a branch**.
+4. Select branch **`gh-pages`** and folder **`/ (root)`**.
+5. Save. The site will be available at https://ggghhhjjj.github.io/bulma-test/
+
+This approach avoids the GitHub Pages API (which requires admin permissions to auto-enable Pages) and works with the default `GITHUB_TOKEN`.
 
 ## Project structure
 
