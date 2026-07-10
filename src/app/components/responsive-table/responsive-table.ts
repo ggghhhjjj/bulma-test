@@ -8,6 +8,19 @@ import { TableColumn, Task, TaskPriority, TaskStatus } from '../../models/task.m
   styleUrl: './responsive-table.scss',
 })
 export class ResponsiveTableComponent {
+  private static readonly STATUS_TAG_CLASS: Record<TaskStatus, string> = {
+    active: 'is-info',
+    pending: 'is-warning',
+    blocked: 'is-danger',
+    done: 'is-success',
+  };
+
+  private static readonly PRIORITY_TAG_CLASS: Record<TaskPriority, string> = {
+    low: 'is-light',
+    medium: 'is-link is-light',
+    high: 'is-danger is-light',
+  };
+
   readonly columns = input.required<TableColumn[]>();
   readonly rows = input.required<Task[]>();
 
@@ -16,21 +29,10 @@ export class ResponsiveTableComponent {
   }
 
   statusTagClass(status: TaskStatus): string {
-    const map: Record<TaskStatus, string> = {
-      active: 'is-info',
-      pending: 'is-warning',
-      blocked: 'is-danger',
-      done: 'is-success',
-    };
-    return `tag ${map[status]}`;
+    return `tag ${ResponsiveTableComponent.STATUS_TAG_CLASS[status]}`;
   }
 
   priorityTagClass(priority: TaskPriority): string {
-    const map: Record<TaskPriority, string> = {
-      low: 'is-light',
-      medium: 'is-link is-light',
-      high: 'is-danger is-light',
-    };
-    return `tag ${map[priority]}`;
+    return `tag ${ResponsiveTableComponent.PRIORITY_TAG_CLASS[priority]}`;
   }
 }
